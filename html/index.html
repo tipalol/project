@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Блокнот</title>
+	<!--Импорт Bootstrap-->
+	<link rel="stylesheet" type="text/css" href="../assets/Bootstrap/bootstrap.min.css">
+	<!--Импорт всех стилей-->
+	<link rel="stylesheet" type="text/css" href="../css/navbar.css">
+</head>
+<body>
+	<div id="app">
+		<navbar />
+		<main>
+			<currentContent>
+				<!--Контент приложения-->
+			</currentContent>
+		</main>
+		<!--Html элементы-->
+		<template id="navbar">
+			<nav class="navbar navbar-inverse navbar-toggleable-md fixed-top">
+				<button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navcollapse">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="container">
+					<a v-on:click.prevent="gotoMain" href="#" class="navbar-brand">Блокнот</a>
+						<div class="collapse navbar-collapse" id="navcollapse">
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item"><a v-on:click.prevent="gotoAbout" href="#" class="nav-link">О программе</a></li>
+								<li class="nav-item"><a v-on:click.prevent="gotoContact" href="#" class="nav-link">Контакты</a></li>
+							</ul>
+						</div>
+				</div>
+			</nav>
+		</template>
+		<template id="notepad">
+			Notepad
+		</template>
+		<template id="about">
+			About
+		</template>
+		<template id="contact">
+			Contact
+		</template>
+	</div>
+	<!--Импорт JQuery-->
+	<script type="text/javascript" src="../assets/JQuery/jquery-3.2.1.min.js"></script>
+	<!--Импорт Tether-->
+	<script type="text/javascript" src="../assets/Tether/tether.min.js"></script>
+	<!--Импорт Bootstrap-->
+	<script type="text/javascript" src="../assets/Bootstrap/bootstrap.min.js"></script>
+	<!--Импорт Vue.js-->
+	<script type="text/javascript" src="../assets/Vue/vue.js"></script>
+	<!--Приложение-->
+	<script type="text/javascript">
+
+		var App = new Vue({
+			el: '#app',
+			data: {
+				currentContent: 0
+			},
+			created: function() {
+				this.$on('gotoMain', this.toggleContent(0))
+				this.$on('gotoAbout', this.toggleContent(1))
+				this.$on('gotoContact', this.toggleContent(2))
+			},
+			methods: {
+				'toggleContent': function (toggler) {
+					switch (toggler) {
+						case 0: {
+
+						}
+						case 1: {
+
+						}
+						case 2: {
+
+						}
+					}
+				}
+			},
+			components: {
+				'navbar': {
+					template: '#navbar',
+					methods: {
+						'gotoMain': function() {
+							this.$emit('gotoMain')
+						},
+						'gotoAbout': function() {
+							this.$emit('gotoAbout')
+						},
+						'gotoContact': function() {
+							this.$emit('gotoContact')
+						}
+					}
+				},
+				'currentContent': {
+					template: '#currentContent',
+					components: {
+						'notepad': {
+							template: '#notepad'
+						},
+						'about': {
+							template: '#about'
+						},
+						'contact': {
+							template: '#contact'
+						}
+					}
+				}
+			}
+		})
+		
+	</script>
+</body>
+</html>
